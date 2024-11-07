@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from 'next/link'
-import { Button } from "@/components/ui/button";
+import Image from 'next/image'
 
 const Header = () => {
     return (
@@ -11,9 +11,11 @@ const Header = () => {
                 <div className="flex flex-1">
                     <Link href="/hero" className="-m-1.5 p-1.5">
                         <span className="sr-only">PawPlan</span>
-                        <img
-                            alt=""
+                        <Image
+                            alt="logo"
                             src="/pawplan-high-resolution-logo-transparent.svg"
+                            width={32} // equivalent to h-8 (8 * 4 = 32px)
+                            height={32}
                             className="h-8 w-auto"
                         />
                     </Link>

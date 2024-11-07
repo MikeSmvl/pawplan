@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const HeroPage = () => {
     return (
@@ -11,9 +12,11 @@ const HeroPage = () => {
                     <div className="flex lg:flex-1">
                         <a href="#" className="-m-1.5 p-1.5">
                             <span className="sr-only">PawPlan</span>
-                            <img
-                                alt=""
+                            <Image
+                                alt="logo"
                                 src="/pawplan-high-resolution-logo-transparent.svg"
+                                width={32} // equivalent to h-8 (8 * 4 = 32px)
+                                height={32}
                                 className="h-8 w-auto"
                             />
                         </a>
@@ -37,10 +40,10 @@ const HeroPage = () => {
                 <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-64 flex-grow flex flex-col justify-center">
                     <div className="text-center">
                         <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
-                            Transform Your Dog's Behavior
+                            Transform Your Dog&apos;s Behavior
                         </h1>
                         <p className="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
-                            AI-powered insights to help you understand, prioritize, and improve your dog's behavior.
+                            AI-powered insights to help you understand, prioritize, and improve your dog&apos;s behavior.
                         </p>
                         <div className="mt-10 flex items-center justify-center gap-x-6">
                             <Link

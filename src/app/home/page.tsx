@@ -68,7 +68,7 @@ const HomePage = () => {
                 <div className="p-8 max-w-4xl mx-auto">
                     <div className="items-center mt-6">
                         <h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
-                        <p className="text-muted-foreground">Here's an example list of dog behaviors.</p>
+                        <p className="text-muted-foreground">Here&apos;s an example list of dog behaviors.</p>
                     </div>
                     <form onSubmit={addTodo} className="flex gap-4 mt-6">
                         <Input
