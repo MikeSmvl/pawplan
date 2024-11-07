@@ -9,6 +9,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Trash2, ArrowUpCircle } from "lucide-react";
 import Header from '@/components/ui/header';
 import Footer from '@/components/ui/footer';
+import GlowButton from "@/components/ui/glowbutton";
+import { AutocompleteInput } from "@/components/ui/autocomplete-input";
 
 type Todo = {
     id: string;
@@ -71,10 +73,9 @@ const HomePage = () => {
                         <p className="text-muted-foreground">Here&apos;s an example list of dog behaviors.</p>
                     </div>
                     <form onSubmit={addTodo} className="relative mt-6">
-                        <Input
-                            type="text"
+                        <AutocompleteInput
                             value={newBehavior}
-                            onChange={(e) => setNewBehavior(e.target.value)}
+                            onValueChange={(value) => setNewBehavior(value)}
                             placeholder="Add a new behavior..."
                             className="pr-12"
                         />
@@ -94,7 +95,7 @@ const HomePage = () => {
                             <Table>
                                 <TableHeader>
                                     <TableRow>
-                                        <TableHead className="w-12"></TableHead>
+                                        <TableHead className="w-12 p-2"><GlowButton>Priority</GlowButton></TableHead>
                                         <TableHead>Behavior</TableHead>
                                         <TableHead className="w-24">Status</TableHead>
                                         <TableHead className="w-24">Actions</TableHead>
@@ -112,8 +113,10 @@ const HomePage = () => {
                                                             {...provided.dragHandleProps}
                                                             className="cursor-move"
                                                         >
-                                                            <TableCell className="w-12">
-                                                                {index + 1}
+                                                            <TableCell className="w-12 align-middle">
+                                                                <div className="flex items-center justify-center">
+                                                                    {index + 1}
+                                                                </div>
                                                             </TableCell>
                                                             <TableCell className={todo.completed ? 'line-through text-gray-500' : ''}>
                                                                 {todo.behavior}

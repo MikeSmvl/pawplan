@@ -1,0 +1,15 @@
+.glow-effect {
+    background: linear-gradient(120deg, #44BCFF, #FF44EC, #FF675E, #44BCFF);
+    background-size: 300% 300%;
+    animation: gradientRotate 5s linear infinite;
+}
+
+@keyframes gradientRotate {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
