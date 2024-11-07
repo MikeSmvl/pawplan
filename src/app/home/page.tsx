@@ -6,23 +6,23 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Trash2 } from "lucide-react";
+import { Trash2, ArrowUpCircle } from "lucide-react";
 import Header from '@/components/ui/header';
 import Footer from '@/components/ui/footer';
 
 type Todo = {
     id: string;
-    task: string;
+    behavior: string;
     completed: boolean;
 };
 
 const HomePage = () => {
     const [todos, setTodos] = useState<Todo[]>([
-        { id: '1', task: 'Excessive barking', completed: false },
-        { id: '2', task: 'Pulling on leash', completed: true },
-        { id: '3', task: 'Not listening to recall', completed: false },
+        { id: '1', behavior: 'Excessive barking', completed: false },
+        { id: '2', behavior: 'Pulling on leash', completed: true },
+        { id: '3', behavior: 'Not listening to recall', completed: false },
     ]);
-    const [newTask, setNewTask] = useState('');
+    const [newBehavior, setNewBehavior] = useState('');
 
     const handleDragEnd = (result: DropResult) => {
         if (!result.destination) return;
@@ -36,17 +36,17 @@ const HomePage = () => {
 
     const addTodo = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!newTask.trim()) return;
+        if (!newBehavior.trim()) return;
 
         setTodos([
             ...todos,
             {
                 id: Date.now().toString(),
-                task: newTask,
+                behavior: newBehavior,
                 completed: false,
             },
         ]);
-        setNewTask('');
+        setNewBehavior('');
     };
 
     const toggleTodo = (id: string) => {
@@ -70,15 +70,23 @@ const HomePage = () => {
                         <h2 className="text-2xl font-bold tracking-tight">Welcome back!</h2>
                         <p className="text-muted-foreground">Here&apos;s an example list of dog behaviors.</p>
                     </div>
-                    <form onSubmit={addTodo} className="flex gap-4 mt-6">
+                    <form onSubmit={addTodo} className="relative mt-6">
                         <Input
                             type="text"
-                            value={newTask}
-                            onChange={(e) => setNewTask(e.target.value)}
-                            placeholder="Add a new task..."
-                            className="flex-1"
+                            value={newBehavior}
+                            onChange={(e) => setNewBehavior(e.target.value)}
+                            placeholder="Add a new behavior..."
+                            className="pr-12"
                         />
-                        <Button type="submit">Add Task</Button>
+                        {newBehavior.trim() && (
+                            <Button
+                                type="submit"
+                                size="icon"
+                                className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 transition-opacity"
+                            >
+                                <ArrowUpCircle className="h-4 w-4" />
+                            </Button>
+                        )}
                     </form>
 
                     <DragDropContext onDragEnd={handleDragEnd}>
@@ -87,7 +95,7 @@ const HomePage = () => {
                                 <TableHeader>
                                     <TableRow>
                                         <TableHead className="w-12"></TableHead>
-                                        <TableHead>Task</TableHead>
+                                        <TableHead>Behavior</TableHead>
                                         <TableHead className="w-24">Status</TableHead>
                                         <TableHead className="w-24">Actions</TableHead>
                                     </TableRow>
@@ -108,13 +116,15 @@ const HomePage = () => {
                                                                 {index + 1}
                                                             </TableCell>
                                                             <TableCell className={todo.completed ? 'line-through text-gray-500' : ''}>
-                                                                {todo.task}
+                                                                {todo.behavior}
                                                             </TableCell>
-                                                            <TableCell>
-                                                                <Checkbox
-                                                                    checked={todo.completed}
-                                                                    onCheckedChange={() => toggleTodo(todo.id)}
-                                                                />
+                                                            <TableCell className="align-middle">
+                                                                <div className="flex items-center h-9 w-9 justify-center">
+                                                                    <Checkbox
+                                                                        checked={todo.completed}
+                                                                        onCheckedChange={() => toggleTodo(todo.id)}
+                                                                    />
+                                                                </div>
                                                             </TableCell>
                                                             <TableCell>
                                                                 <Button
@@ -137,7 +147,7 @@ const HomePage = () => {
                         </div>
                     </DragDropContext>
                 </div>
-            </main >
+            </main>
             <Footer />
         </>
     );
