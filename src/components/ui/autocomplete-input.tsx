@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command";
+import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from "@/components/ui/command";
 import { cn } from "@/lib/utils";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Check, Loader2 } from "lucide-react";
@@ -25,7 +25,6 @@ const commonDogBehaviors = [
     "Poor leash manners",
     "Food aggression",
     "Nipping/mouthing",
-    "Some very very very very very very very very long long one "
 ];
 
 interface AutocompleteInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
