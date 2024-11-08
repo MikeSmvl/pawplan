@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PawPlan
+
+**PawPlan** is a monorepo built using [TurboRepo](https://turbo.build/) to manage a Next.js application with efficient builds and task orchestration. This project serves as a platform for tracking and prioritizing dog behaviors to aid in training, with potential for AI-driven insights.
+
+## Project Structure
+
+The repository is organized into a monorepo structure with TurboRepo managing tasks across projects.
+
+```
+.
+├── apps/
+│   └── web/               # Next.js application
+├── turbo.json             # TurboRepo configuration
+└── package.json           # Root package configuration with TurboRepo scripts
+```
+
+## Tech Stack
+
+- **Next.js**: React framework for server-rendered applications
+- **React 19**: Latest release candidate
+- **Tailwind CSS**: Utility-first CSS framework for styling
+- **TurboRepo**: Monorepo tool for optimized task running and caching
+- **TypeScript**: Static typing
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- **Node.js**: Ensure you have Node.js v20 or higher.
+- **npm**: npm 10 is specified as the package manager.
+
+### Installation
+
+1. **Clone the repository**:
+
+   ```bash
+   git clone https://github.com/yourusername/pawplan.git
+   cd pawplan
+   ```
+
+2. **Install dependencies**:
+
+   ```bash
+   npm install
+   ```
+
+### Development
+
+To start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This will run the Next.js app in development mode using TurboRepo’s orchestration.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command           | Description                                             |
+|-------------------|---------------------------------------------------------|
+| `npm run dev`     | Starts development mode for all apps                    |
+| `npm run dev:web` | Starts development mode for `web` app only              |
+| `npm run build`   | Builds all apps                                         |
+| `npm run lint`    | Lints all apps                                          |
 
-## Learn More
+### TurboRepo Configuration
 
-To learn more about Next.js, take a look at the following resources:
+The **`turbo.json`** file configures caching and dependencies between tasks:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **`build`**: Builds depend on other builds, caching results in `.next`.
+- **`lint`**: Linting task, dependent on previous lint runs.
+- **`dev`**: Persistent dev mode, disabled caching for real-time changes.
